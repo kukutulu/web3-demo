@@ -1,12 +1,12 @@
 import { Box, Typography } from '@mui/material';
-import { useModalFunction } from 'src/jotai/modal/modal';
+import { useModalStateFunction } from 'src/jotai/modal/modal-state';
 import { infoChain, infoWallet } from 'src/jotai/wallet/config';
 import { TAppChainId } from 'src/jotai/wallet/type';
 import { Connector, useChainId, useConnect } from 'wagmi';
 
 export default function ModalListWalletConnect() {
   const { connectAsync, connectors, isPending } = useConnect();
-  const { closeModal } = useModalFunction();
+  const { closeModal } = useModalStateFunction();
   const chainIdConnected = useChainId();
   const infoChainConnected = infoChain[chainIdConnected as TAppChainId];
   const ChainIcon = infoChainConnected.logoChain;
@@ -15,7 +15,7 @@ export default function ModalListWalletConnect() {
   const handleConnect = async (connector: Connector) => {
     try {
       await connectAsync({ connector });
-      closeModal();
+      closeModal('connectWallet');
     } catch (error) {
       console.error(error);
     }
@@ -26,8 +26,8 @@ export default function ModalListWalletConnect() {
   };
 
   return (
-    <Box>
-      <Box sx={{ display: 'flex', placeItems: 'center', px: 2, justifyContent: 'center', mb: 1 }}>
+    <Box width={'80%'}>
+      <Box sx={{ display: 'flex', placeItems: 'center', justifyContent: 'center' }}>
         <ChainIcon sx={{ fontSize: '32px', mr: 1 }} />
         <Typography variant="body2" fontWeight={600} textAlign={'center'} sx={{ display: 'block', fontSize: '25px' }}>
           {infoChainConnected.name}
@@ -48,7 +48,6 @@ export default function ModalListWalletConnect() {
               if (connector.id === 'io.metamask') {
                 return null;
               }
-
               return (
                 <Box
                   key={connector.id + index}
@@ -74,11 +73,10 @@ export default function ModalListWalletConnect() {
               );
             })}
           </Box>
-
           {isNotInstallWalletList.length > 0 ? (
             <>
               <Typography variant="h6">Other</Typography>
-              <Box mt={2} mb={4}>
+              <Box mt={2} mb={2}>
                 {isNotInstallWalletList.map((key, index) => {
                   const connector = infoWallet[key];
                   return (
@@ -96,7 +94,6 @@ export default function ModalListWalletConnect() {
                         '&:hover': { '& > .wallet-name': { color: 'primary.main' } },
                         bgcolor: '#3396ff17',
                       }}
-                      //   onClick={() => handleConnect(connector)}
                       onClick={() => handleRedirect(connector.url)}
                     >
                       <img src={connector.logoWallet} alt={`logo wallet ${connector.name}`} style={{ width: '24px', height: '24px', borderRadius: '4px' }} />

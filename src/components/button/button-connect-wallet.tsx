@@ -4,23 +4,17 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box, Button, ClickAwayListener, Divider, MenuItem, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { IconWallet } from 'src/assets/icon';
-import { useModalFunction } from 'src/jotai/modal/modal';
 import { infoChain, infoWallet } from 'src/jotai/wallet/config';
 import { useAccount, useChainId, useConnections, useDisconnect } from 'wagmi';
 import { TAppChainId } from 'src/jotai/wallet/type';
-import ModalListWalletConnect from '../modal/modal-list-wallet-connect';
+import { useModalStateFunction } from 'src/jotai/modal/modal-state';
 
 function NotConnectedButton() {
-  const { openModal } = useModalFunction();
+  const { openModal } = useModalStateFunction();
+
   return (
     <>
-      <Button
-        variant="contained"
-        onClick={() => {
-          openModal({ title: 'Choose Wallet', content: <ModalListWalletConnect />, modalProps: { maxWidth: 'xs' } });
-        }}
-        sx={{ textAlign: 'center', height: { xs: '36px', xsm: '44px' } }}
-      >
+      <Button variant="contained" onClick={() => openModal('connectWallet')} sx={{ textAlign: 'center', height: { xs: '36px', xsm: '44px' } }}>
         <Box component={'span'} sx={{ display: { sm: 'block', xs: 'none' }, mr: 1, width: '130px' }}>
           Connect Wallet
         </Box>

@@ -7,13 +7,13 @@ const initData: TThemeData = {
   mode: 'light',
 };
 
-const state = atom<TThemeData>(initData);
-appStore.set(state, initData);
+const themeMode = atom<TThemeData>(initData);
+appStore.set(themeMode, initData);
 
-export const useThemeData = () => useAtomValue(state);
+export const useThemeData = () => useAtomValue(themeMode);
 
 export const useThemeFunction = () => {
-  const _setState = useSetAtom(state);
+  const _setState = useSetAtom(themeMode);
   function setState(data: Partial<TThemeData>) {
     _setState((prev) => {
       return {
@@ -26,7 +26,6 @@ export const useThemeFunction = () => {
   const toggleThemeMode = useCallback(() => {
     _setState((prev) => {
       const newMode: THEME_MODE = prev.mode === 'dark' ? 'light' : 'dark';
-      // eslint-disable-next-line no-undef
       localStorage.setItem('theme', newMode);
       return {
         ...prev,

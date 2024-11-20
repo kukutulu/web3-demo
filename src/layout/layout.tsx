@@ -8,7 +8,7 @@ export default function Layout() {
   return (
     <>
       <AppProvider>
-        <Box sx={{ bgcolor: '#F9FDFF', pt: 4 }}>
+        <Box sx={{ pt: 4 }}>
           <Header />
           <Content headerHeight="64px" />
           <ModalConnectWallet />

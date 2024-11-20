@@ -1,5 +1,5 @@
 import { createClient, http } from 'viem';
-import { bsc, bscTestnet } from 'viem/chains';
+import { arbitrum, bsc, bscTestnet, fantom, mainnet } from 'viem/chains';
 import { createConfig } from 'wagmi';
 import { injected, walletConnect } from 'wagmi/connectors';
 import { TAppChainId } from './type';
@@ -8,7 +8,7 @@ import { IconBNB, SvgComponent } from 'src/assets/token-icon';
 import { imagePath } from 'src/constants/image-path';
 
 export const configEvmChain = createConfig({
-  chains: [bsc, bscTestnet],
+  chains: [bsc, bscTestnet, arbitrum, fantom, mainnet],
   connectors: [
     injected({ target: 'metaMask' }),
     walletConnect({
@@ -38,6 +38,24 @@ export const infoChain: { [key in TAppChainId]: { logoChain: SvgComponent; name:
     name: 'BSC testnet',
     baseToken: 'BNB',
     url: bsc.blockExplorers.default.url,
+  },
+  [arbitrum.id]: {
+    logoChain: IconBNB,
+    name: 'Arbitrum',
+    baseToken: 'ETH',
+    url: arbitrum.blockExplorers.default.url,
+  },
+  [fantom.id]: {
+    logoChain: IconBNB,
+    name: 'Fantom',
+    baseToken: 'BNB',
+    url: fantom.blockExplorers.default.url,
+  },
+  [mainnet.id]: {
+    logoChain: IconBNB,
+    name: 'Ethereum',
+    baseToken: 'ETH',
+    url: mainnet.blockExplorers.default.url,
   },
 };
 

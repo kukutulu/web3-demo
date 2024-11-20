@@ -10,12 +10,30 @@ export default [
   js.configs.recommended,
   prettier,
   {
+    ignores: [
+      'node_modules/', 
+      'dist/', 
+      '.husky/', 
+      'vite.config.ts', 
+      'script/', 
+      'bun.lockb', 
+      'eslint.config.js', 
+      'tsconfig.json', 
+      'tsconfig.node.json', 
+      '*.min.js', 
+      '*.bundle.js'
+    ],
+  },
+  {
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       parser: typescriptParser,
       ecmaVersion: 'latest',
       sourceType: 'module',
       globals: {
+        setTimeout: true,
+        localStorage: true,
+        HTMLButtonElement: true,
         console: true, // Ensure `console` is recognized
         window: true, // Ensure `window` is recognized
         __dirname: true, // Ensure `__dirname` is recognized

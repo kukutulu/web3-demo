@@ -6,7 +6,8 @@ package.json
 /coverage
 .dockerignore
 .DS_Store
-.eslintignore
+# .eslintignore
+eslint.config.js
 *.png
 *.toml
 docker
