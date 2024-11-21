@@ -2,10 +2,13 @@ import { useState, MouseEvent } from 'react';
 import { Button, Popover, MenuItem, ListItemIcon, ListItemText, Collapse, Grow, Box, Typography } from '@mui/material';
 import { Edit, FileCopy, Share, Delete, ArrowDropDown } from '@mui/icons-material';
 import { RotateIcon } from '../utils';
+import { useTranslation } from 'react-i18next';
 
 export default function StaggeredDropDown() {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const [openMenu, setOpenMenu] = useState(false);
+
+  const { t } = useTranslation();
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -22,7 +25,7 @@ export default function StaggeredDropDown() {
   return (
     <Box>
       <Button onClick={handleClick} variant="contained" endIcon={<RotateIcon isOpen={openMenu} Icon={ArrowDropDown} />}>
-        Stage Select
+        {t('stageSelect')}
       </Button>
 
       <Popover

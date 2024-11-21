@@ -17,10 +17,13 @@
     "@mui/icons-material": "^6.1.7",
     "@mui/material": "^6.1.7",
     "@tanstack/react-query": "^5.60.5",
+    "i18next": "^23.16.6",
+    "i18next-http-backend": "^2.6.2",
     "jotai": "^2.10.2",
     "jotai-devtools": "^0.10.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-i18next": "^15.1.1",
     "react-router-dom": "^6.28.0",
     "viem": "2.x",
     "wagmi": "^2.12.33"
