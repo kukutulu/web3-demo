@@ -31,14 +31,17 @@ export default [
       ecmaVersion: 'latest',
       sourceType: 'module',
       globals: {
+        fetch: true,
+        ReadableStreamDefaultReader: true,
+        TextDecoder: true,
         setTimeout: true,
         localStorage: true,
         HTMLButtonElement: true,
+        HTMLDivElement: true,
         console: true, // Ensure `console` is recognized
         window: true, // Ensure `window` is recognized
         __dirname: true, // Ensure `__dirname` is recognized
         document: true,
-        process: true,
         browser: true, // Browser global variables like `window` etc.
         commonjs: true, // CommonJS global variables and CommonJS scoping.
         es6: true, // Enable all ECMAScript 6 features except for modules.
