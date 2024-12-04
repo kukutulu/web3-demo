@@ -16,7 +16,7 @@ export default [
       '.husky/', 
       'vite.config.ts', 
       'script/', 
-      'bun.lockb', 
+      'bun.lockb',
       'eslint.config.js', 
       'tsconfig.json', 
       'tsconfig.node.json', 
