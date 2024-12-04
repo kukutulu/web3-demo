@@ -1,14 +1,14 @@
 import { bep20Abi } from 'public/abis/bep_20';
 import { configEvmChain } from 'src/jotai/wallet/config';
 import { useAccount, useReadContract } from 'wagmi';
-import { readContracts } from 'wagmi/actions';
+import { readContracts, sendTransaction } from 'wagmi/actions';
 
 export default function ReadContract() {
   const { address } = useAccount();
 
   async function test() {
     if (!address) return;
-    const temp = await readContracts(configEvmChain, {
+    const balance = await readContracts(configEvmChain, {
       contracts: [
         {
           address: '0x1af3f329e8be154074d8769d1ffa4ee058b1dbc3',
@@ -20,7 +20,7 @@ export default function ReadContract() {
     });
 
     console.log(window.ethereum);
-    console.log(temp);
+    console.log(balance);
   }
 
   test();
