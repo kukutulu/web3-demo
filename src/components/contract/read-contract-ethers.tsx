@@ -10,6 +10,8 @@ export default function ReadContractEthers() {
   const daiContract = new ethers.Contract('0x1af3f329e8be154074d8769d1ffa4ee058b1dbc3', bep20Abi, provider);
   const daiDecimal = 18;
 
+  const temp = false;
+
   console.error(12323);
 
   async function test() {
